@@ -733,3 +733,10 @@ main {
     line-height: 1.8;
   }
 }
+.landing-main {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 16px 40px;
+}
