@@ -1,6 +1,6 @@
 async function loadPublications(){
 
-  const scholarID = "YOUR_GOOGLE_SCHOLAR_ID";
+  const scholarID = "BimZFYAAAAAJ&hl=ko";
   
   const url = "https://api.allorigins.win/raw?url=https://scholar.googleusercontent.com/citations?user="+scholarID;
   
