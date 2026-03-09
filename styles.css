@@ -187,12 +187,11 @@ main {
 }
 
 .landing-layout {
+   display: flex;
+  flex-direction: column;
+  gap: 24px;
   max-width: 1120px;
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2.8fr);
-  gap: 24px;
-  align-items: stretch;
 }
 
 .landing-hero {
