@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Research | Marine Metagenome Mining Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">M<sup>3</sup>L</div>
+          <div class="logo-text">
+            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
+            <span class="logo-english">Marine Metagenome Mining Lab</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+          <button
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html" aria-current="page">Research</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-highlight">
+              <a href="member-only.html">Member only</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" aria-labelledby="research-title">
+        <div class="section-header">
+          <h2 id="research-title">Research</h2>
+          <p class="section-subtitle">
+            From marine microbiomes and invertebrate symbionts to biosynthetic
+            gene clusters and new bioactive natural products.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="card">
+            <h3>Marine natural products &amp; chemical ecology</h3>
+            <p>
+              Isolation and structure elucidation of bioactive marine natural
+              products from invertebrates and associated microorganisms, with a
+              focus on antibacterial, antifungal, and anticancer activities.
+            </p>
+            <ul>
+              <li>Chromatographic purification and structural analysis (LC-MS, NMR)</li>
+              <li>Bioassay-guided fractionation and activity profiling</li>
+              <li>Chemical ecology between hosts and symbionts</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Marine microbial diversity &amp; symbiosis</h3>
+            <p>
+              Cultivation and characterization of marine-derived bacteria and
+              fungi from diverse environments including sediments, invertebrates,
+              and coastal ecosystems.
+            </p>
+            <ul>
+              <li>Isolation of symbiotic actinomycetes and fungi</li>
+              <li>Optimization of culture media for secondary metabolite production</li>
+              <li>Microbial community analysis in environmental samples</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Biosynthetic gene clusters &amp; engineering</h3>
+            <p>
+              Discovery and engineering of biosynthetic gene clusters (BGCs) for
+              marine natural products using modern genetic tools.
+            </p>
+            <ul>
+              <li>Cloning BGCs and heterologous expression in Streptomyces</li>
+              <li>CRISPR/Cas-based genome engineering</li>
+              <li>Promoter engineering to enhance metabolite production</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Metagenomics &amp; bioinformatics</h3>
+            <p>
+              Mining metagenomic datasets to uncover cryptic biosynthetic
+              potential and explore microbial community structures.
+            </p>
+            <ul>
+              <li>Analysis of metagenomic sequencing data</li>
+              <li>Sequence-based prediction of secondary metabolite pathways</li>
+              <li>Diversity assessment of environmental microbiomes</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>
+          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
+          Hiyoung Kim.
+        </p>
+        <p>
+          Department of Biomedical Science &amp; Engineering, Konkuk University
+        </p>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      ↑
+    </button>
+
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const navList = document.querySelector(".nav-list");
+      if (navToggle && navList) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navList.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      const scrollTopBtn = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", () => {
+        if (!scrollTopBtn) return;
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = String(new Date().getFullYear());
+      }
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Marine Metagenome Mining Lab | Hiyoung Kim</title>
+    <meta
+      name="description"
+      content="Marine Metagenome Mining Lab (M3 Lab, PI: Hiyoung Kim) at Konkuk University explores marine metagenomes and microbiomes to discover new natural products and biosynthetic pathways."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">M<sup>3</sup>L</div>
+          <div class="logo-text">
+            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
+            <span class="logo-english">Marine Metagenome Mining Lab</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+          <button
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-highlight">
+              <a href="member-only.html">Member only</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="landing-main">
+      <div class="landing-layout">
+        <section
+          class="landing-hero"
+          aria-label="Marine Metagenome Mining Lab concept illustration"
+        >
+          <img
+            src="mmm-hero.png"
+            alt="Marine Metagenome Mining Lab illustration of marine sponge symbionts, metagenome mining workflow, and biosynthetic gene clusters."
+            class="landing-hero-image"
+          />
+        </section>
+
+        <section class="landing-intro" aria-labelledby="intro-title">
+          <p class="eyebrow">Konkuk University · Biomedical Science &amp; Engineering</p>
+          <h1 id="intro-title">Hiyoung Kim, Ph.D.</h1>
+          <h2>Marine Metagenome Mining Lab (M<sup>3</sup> Lab)</h2>
+          <p>
+            저는 건국대학교 의생명과학과에서 조교수로 재직 중인 해양 천연물 화학자이자
+            미생물학자입니다. 해양 무척추동물과 그 공생 미생물, 그리고 환경 메타지놈을
+            기반으로 새로운 유용 천연물과 그 생합성 경로를 탐색하고 있습니다.
+          </p>
+          <p>
+            Marine Metagenome Mining Lab은 해양 미생물 군집과 메타지놈 데이터를
+            <strong>화학·유전학·생물정보학</strong>적으로 통합 분석하여, 숨겨진 2차
+            대사산물과 생합성 유전자 클러스터를 발굴하고 기능을 규명하는 것을 목표로
+            합니다.
+          </p>
+          <p>
+            연구 내용과 구성원, 최신 성과는 상단 메뉴에서 각 페이지로 이동해
+            확인하실 수 있습니다.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>
+          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
+          Hiyoung Kim.
+        </p>
+        <p>
+          Department of Biomedical Science &amp; Engineering, Konkuk University
+        </p>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      ↑
+    </button>
+
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const navList = document.querySelector(".nav-list");
+      if (navToggle && navList) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navList.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      const scrollTopBtn = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", () => {
+        if (!scrollTopBtn) return;
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = String(new Date().getFullYear());
+      }
+    </script>
+  </body>
+</html>
+

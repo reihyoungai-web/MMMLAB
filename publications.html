@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Publications | Marine Metagenome Mining Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">M<sup>3</sup>L</div>
+          <div class="logo-text">
+            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
+            <span class="logo-english">Marine Metagenome Mining Lab</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+          <button
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="publications.html" aria-current="page">Publications</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-highlight">
+              <a href="member-only.html">Member only</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section-alt" aria-labelledby="publications-title">
+        <div class="section-header">
+          <h2 id="publications-title">Publications</h2>
+          <p class="section-subtitle">
+            Selected topics in marine natural products, microbiology, and metagenomics.
+          </p>
+        </div>
+
+        <div class="publications-layout">
+          <div class="card">
+            <h3>Highlighted topics</h3>
+            <ul>
+              <li>Bioactive metabolites from marine invertebrates and symbionts</li>
+              <li>Iodinated polyacetylenes and benzophenone derivatives</li>
+              <li>Antibacterial and antifungal compounds from marine actinomycetes</li>
+              <li>Metagenomic exploration of microbial secondary metabolite potential</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Full publication list</h3>
+            <p>
+              A complete list of publications, conference presentations, and
+              awards can be found in the CV.
+            </p>
+            <p>
+              <a
+                class="btn"
+                href="Curriculum_Vitae_Hiyoung%20Kim_2025_Oct.pdf"
+                target="_blank"
+                rel="noopener"
+                >Open Curriculum Vitae (PDF)</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>
+          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
+          Hiyoung Kim.
+        </p>
+        <p>
+          Department of Biomedical Science &amp; Engineering, Konkuk University
+        </p>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      ↑
+    </button>
+
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const navList = document.querySelector(".nav-list");
+      if (navToggle && navList) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navList.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      const scrollTopBtn = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", () => {
+        if (!scrollTopBtn) return;
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = String(new Date().getFullYear());
+      }
+    </script>
+  </body>
+</html>
+
