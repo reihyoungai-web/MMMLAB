@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Members | Marine Metagenome Mining Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">M<sup>3</sup>L</div>
+          <div class="logo-text">
+            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
+            <span class="logo-english">Marine Metagenome Mining Lab</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" aria-label="Main navigation">
+          <button
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="members.html" aria-current="page">Members</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-highlight">
+              <a href="member-only.html">Member only</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section member-main" aria-labelledby="pi-title">
+        <div class="section-header">
+          <h2 id="pi-title">Principal Investigator</h2>
+          <p class="section-subtitle">
+            Marine natural products, marine microbiology, and metagenome-based discovery.
+          </p>
+        </div>
+
+        <article class="card">
+          <div class="pi-layout">
+            <div class="pi-photo-large">
+              <img src="pic.jpg" alt="Portrait of Hiyoung Kim" />
+            </div>
+            <div class="pi-bio">
+              <h3>Hiyoung Kim, Ph.D.</h3>
+              <p class="pi-title">Assistant Professor, Biomedical Science &amp; Engineering</p>
+              <p class="pi-affiliation">
+                Konkuk University, Seoul, Republic of Korea
+              </p>
+              <p>
+                Hiyoung Kim is a marine natural product chemist and microbiologist.
+                She received her Ph.D. in Marine Natural Product Chemistry from
+                Seoul National University, where she worked on the isolation and
+                structural elucidation of bioactive metabolites from marine
+                invertebrates and microorganisms. After postdoctoral training at
+                the University of Illinois Chicago and research positions in
+                industry and at Konkuk University, she established the Marine
+                Metagenome Mining Lab (M<sup>3</sup> Lab) in 2024.
+              </p>
+              <p>
+                Her group focuses on mining marine microbiomes and environmental
+                metagenomes to uncover new secondary metabolites, decoding their
+                biosynthetic gene clusters, and understanding the chemical ecology
+                between marine hosts and microbial symbionts.
+              </p>
+              <p class="pi-meta">
+                <strong>E-mail</strong>:
+                <a href="mailto:reihyoung@konkuk.ac.kr">reihyoung@konkuk.ac.kr</a> ·
+                <strong>Tel</strong>:
+                <a href="tel:+8224503760">+82-2-450-3760</a>
+              </p>
+              <p class="pi-meta">
+                Full CV:
+                <a
+                  href="_Hiyoung%20Kim_2025_Oct.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  >Curriculum Vitae (PDF)</a
+                >
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <section class="section" aria-label="Lab members (to be updated)">
+          <div class="section-header">
+            <h2>Lab members</h2>
+            <p class="section-subtitle">
+              Recruitment information for postdocs, graduate students, and undergraduate researchers.
+            </p>
+          </div>
+
+          <div class="members-grid">
+            <article class="card">
+              <h3>Postdoctoral researchers</h3>
+              <p>
+                Positions for postdoctoral fellows interested in marine metagenomics,
+                microbial genetics, or natural product chemistry will be announced.
+                Candidates are welcome to contact the PI with a CV and short
+                research statement.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Graduate students</h3>
+              <p>
+                The lab is looking for motivated M.S. and Ph.D. students who are
+                excited about ocean microbiomes, secondary metabolites, and genome
+                mining approaches.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Undergraduate researchers</h3>
+              <p>
+                Undergraduate students can participate in ongoing projects and gain
+                experience in marine microbiology, molecular biology, and data
+                analysis. Please contact the PI by e-mail for details.
+              </p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>
+          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
+          Hiyoung Kim.
+        </p>
+        <p>
+          Department of Biomedical Science &amp; Engineering, Konkuk University
+        </p>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      ↑
+    </button>
+
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const navList = document.querySelector(".nav-list");
+      if (navToggle && navList) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navList.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      const scrollTopBtn = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", () => {
+        if (!scrollTopBtn) return;
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = String(new Date().getFullYear());
+      }
+    </script>
+  </body>
+</html>
+
