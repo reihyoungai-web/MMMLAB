@@ -43,7 +43,7 @@ img {
 }
 
 main {
-  padding-top: 80px;
+  padding-top: 96px;
 }
 
 .site-header {
@@ -738,5 +738,5 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 72px 16px 40px;
+  padding: 42px 16px 40px;
 }
