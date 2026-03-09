@@ -407,8 +407,18 @@ main {
   gap: 4px;
 }
 
+.contact-details p:first-of-type {
+  font-size: 18px;
+  font-weight: 600;
+}
 .contact-details p {
   margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.contact-details h3 {
+  font-size: 20px;
 }
 
 .contact-list {
@@ -432,7 +442,8 @@ main {
 
 .contact-list dd {
   margin: 0;
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .contact-form {
