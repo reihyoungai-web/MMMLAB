@@ -1,131 +1,39 @@
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Publications | Marine Metagenome Mining Lab</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-          <div class="logo-mark">M<sup>3</sup>L</div>
-          <div class="logo-text">
-            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
-            <span class="logo-english">Marine Metagenome Mining Lab</span>
-          </div>
-        </a>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications | Marine Metagenome Mining Lab</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
-        <nav class="site-nav" aria-label="Main navigation">
-          <button
-            class="nav-toggle"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="publications.html" aria-current="page">Publications</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li class="nav-highlight">
-              <a href="member-only.html">Member only</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <header>
+    <div class="container">
+      <h1>Marine Metagenome Mining Lab</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <section class="section section-alt" aria-labelledby="publications-title">
-        <div class="section-header">
-          <h2 id="publications-title">Publications</h2>
-          <p class="section-subtitle">
-            Selected topics in marine natural products, microbiology, and metagenomics.
-          </p>
-        </div>
+  <main class="section">
+    <h2>Publications</h2>
+    <p>Selected publications from the lab.</p>
 
-        <div class="publications-layout">
-          <div class="card">
-            <h3>Highlighted topics</h3>
-            <ul>
-              <li>Bioactive metabolites from marine invertebrates and symbionts</li>
-              <li>Iodinated polyacetylenes and benzophenone derivatives</li>
-              <li>Antibacterial and antifungal compounds from marine actinomycetes</li>
-              <li>Metagenomic exploration of microbial secondary metabolite potential</li>
-            </ul>
-          </div>
+    <div id="publist" class="publication-list">
+      Loading publications...
+    </div>
+  </main>
 
-          <div class="card">
-            <h3>Full publication list</h3>
-            
-            <p>
-              <div id="publist">
-                Loading publications...
-                </div>
-                
-                <script src="scholar.js"></script>
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+  <footer>
+    <p>© 2026 Marine Metagenome Mining Lab</p>
+  </footer>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <p>
-          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
-          Hiyoung Kim.
-        </p>
-        <p>
-          Department of Biomedical Science &amp; Engineering, Konkuk University
-        </p>
-      </div>
-    </footer>
-
-    <button class="scroll-top" aria-label="Scroll to top">
-      ↑
-    </button>
-
-    <script>
-      const navToggle = document.querySelector(".nav-toggle");
-      const navList = document.querySelector(".nav-list");
-      if (navToggle && navList) {
-        navToggle.addEventListener("click", () => {
-          const isOpen = navList.classList.toggle("open");
-          navToggle.setAttribute("aria-expanded", String(isOpen));
-        });
-      }
-
-      const scrollTopBtn = document.querySelector(".scroll-top");
-      window.addEventListener("scroll", () => {
-        if (!scrollTopBtn) return;
-        if (window.scrollY > 300) {
-          scrollTopBtn.classList.add("visible");
-        } else {
-          scrollTopBtn.classList.remove("visible");
-        }
-      });
-      if (scrollTopBtn) {
-        scrollTopBtn.addEventListener("click", () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      }
-
-      const yearSpan = document.getElementById("year");
-      if (yearSpan) {
-        yearSpan.textContent = String(new Date().getFullYear());
-      }
-    </script>
-  </body>
+  <script src="js/publications.js"></script>
+</body>
 </html>
-
