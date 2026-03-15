@@ -2,19 +2,29 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Publications | Marine Metagenome Mining Lab</title>
     <link rel="stylesheet" href="styles.css" />
-
     <style>
-      .publications-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
+      .publications-layout { display: flex; flex-direction: column; gap: 24px; }
+      .pub-items { display: flex; flex-direction: column; gap: 20px; }
+      .pub-item { padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
+      .pub-item:last-child { border-bottom: none; }
+      .pub-authors { font-size: 0.9rem; color: #6b7280; margin: 0 0 4px; }
+      .pub-title { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
+      .pub-title a { color: inherit; text-decoration: none; }
+      .pub-title a:hover { text-decoration: underline; }
+      .pub-journal { font-size: 0.9rem; color: #374151; margin: 0 0 4px; }
+      .pub-links { font-size: 0.85rem; margin: 4px 0 0; }
+      .pub-links a { color: #2563eb; text-decoration: none; }
+      .pub-links a:hover { text-decoration: underline; }
+      .pub-pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+      .pub-pagination button { padding: 6px 14px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; font-size: 0.9rem; }
+      .pub-pagination button:hover { background: #f3f4f6; }
+      .pub-pagination button.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+      .pub-pagination button:disabled { opacity: 0.4; cursor: default; }
+      .pub-scholar-link { margin-top: 16px; font-size: 0.9rem; color: #6b7280; }
+      .pub-scholar-link a { color: #2563eb; }
     </style>
   </head>
   <body>
@@ -27,18 +37,10 @@
             <span class="logo-english">Marine Metagenome Mining Lab</span>
           </div>
         </a>
-
         <nav class="site-nav" aria-label="Main navigation">
-          <button
-            class="nav-toggle"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
+          <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
           </button>
-
           <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
@@ -46,9 +48,7 @@
             <li><a href="publications.html" aria-current="page">Publications</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li class="nav-highlight">
-              <a href="member-only.html">Member only</a>
-            </li>
+            <li class="nav-highlight"><a href="member-only.html">Member only</a></li>
           </ul>
         </nav>
       </div>
@@ -58,9 +58,7 @@
       <section class="section section-alt" aria-labelledby="publications-title">
         <div class="section-header">
           <h2 id="publications-title">Publications</h2>
-          <p class="section-subtitle">
-            Selected topics in marine natural products, microbiology, and metagenomics.
-          </p>
+          <p class="section-subtitle">Selected topics in marine natural products, microbiology, and metagenomics.</p>
         </div>
 
         <div class="publications-layout">
@@ -76,75 +74,12 @@
 
           <div class="card">
             <h3>Full publication list</h3>
-           <div id="publist">Loading publications...</div>
-<script>
-(function() {
-  var publications = [
-    {
-      "authors": "Shin M-S, Yang I, Wang W, Kim H",
-      "title": "Diversity and composition of sponge-associated microbiomes from Korean sponges revealed by full-length 16S rRNA analysis",
-      "journal": "Scientific Reports",
-      "volume": "15",
-      "issue": "",
-      "pages": "",
-      "year": 2025,
-      "doi": "10.1038/s41598-025-16155-6",
-      "url": "https://www.nature.com/articles/s41598-025-16155-6"
-    },
-    {
-      "authors": "Ji C-H, Je H-W, Kim H, Kang H-S",
-      "title": "Promoter engineering of natural product biosynthetic gene clusters in actinomycetes: concepts and applications",
-      "journal": "Natural Product Reports",
-      "volume": "41",
-      "issue": "",
-      "pages": "672",
-      "year": 2024,
-      "doi": "10.1039/D3NP00049D",
-      "url": "https://pubs.rsc.org/en/content/articlelanding/2024/np/d3np00049d"
-    },
-    {
-      "authors": "Chung Y-H, Kim H, Ji C-H, Je H-W, Lee D, Shim SH, Joo H-S, Kang H-S",
-      "title": "Comparative genomics reveals a remarkable biosynthetic potential of the Streptomyces phylogenetic lineage associated with rugose-ornamented spores",
-      "journal": "mSystems",
-      "volume": "6",
-      "issue": "4",
-      "pages": "e00489-21",
-      "year": 2021,
-      "doi": "10.1128/mSystems.00489-21",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8407293/"
-    }
-  ];
-
-  publications.sort(function(a, b) { return b.year - a.year; });
-
-  var publist = document.getElementById("publist");
-  var html = '<div class="pub-items">';
-  publications.forEach(function(pub) {
-    var titleHtml = pub.url
-      ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">' + pub.title + '</a>'
-      : pub.title;
-    var doiLink = pub.doi
-      ? '<a href="https://doi.org/' + pub.doi + '" target="_blank" rel="noopener noreferrer">DOI</a>'
-      : "";
-    var articleLink = pub.url
-      ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">Article</a>'
-      : "";
-    var links = [doiLink, articleLink].filter(Boolean).join(" | ");
-    html += '<div class="pub-item">';
-    html += '<p class="pub-authors">' + pub.authors + '</p>';
-    html += '<h3 class="pub-title">' + titleHtml + '</h3>';
-    html += '<p class="pub-journal"><em>' + pub.journal + '</em>';
-    if (pub.volume) html += ', ' + pub.volume;
-    if (pub.issue) html += '(' + pub.issue + ')';
-    if (pub.pages) html += ', ' + pub.pages;
-    html += ' (' + pub.year + ')</p>';
-    if (links) html += '<p class="pub-links">' + links + '</p>';
-    html += '</div>';
-  });
-  html += '</div>';
-  publist.innerHTML = html;
-})();
-</script>
+            <div id="publist"></div>
+            <div class="pub-pagination" id="pagination"></div>
+            <p class="pub-scholar-link">
+              For the complete list of publications, visit
+              <a href="https://scholar.google.com/scholar?hl=ko&as_sdt=0,5&q=%22hiyoung+kim%22&scisbd=1" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
+            </p>
           </div>
         </div>
       </section>
@@ -152,52 +87,129 @@
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <p>
-          © <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L),
-          Hiyoung Kim.
-        </p>
-        <p>
-          Department of Biomedical Science &amp; Engineering, Konkuk University
-        </p>
+        <p>© <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L), Hiyoung Kim.</p>
+        <p>Department of Biomedical Science &amp; Engineering, Konkuk University</p>
       </div>
     </footer>
 
-    <button class="scroll-top" aria-label="Scroll to top">
-      ↑
-    </button>
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
 
     <script>
-      const navToggle = document.querySelector(".nav-toggle");
-      const navList = document.querySelector(".nav-list");
+    (function () {
+      var publications = [
+        {
+          authors: "Shin M-S, Yang I, Wang W, Kim H",
+          title: "Diversity and composition of sponge-associated microbiomes from Korean sponges revealed by full-length 16S rRNA analysis",
+          journal: "Scientific Reports", volume: "15", issue: "", pages: "", year: 2025,
+          doi: "10.1038/s41598-025-16155-6",
+          url: "https://www.nature.com/articles/s41598-025-16155-6"
+        },
+        {
+          authors: "Kim H, Ahn J, Kim J, Kang H-S",
+          title: "Metagenomic insights and biosynthetic potential of Candidatus Entotheonella symbiont associated with Halichondria marine sponges",
+          journal: "Microbiology Spectrum", volume: "13", issue: "1", pages: "e0235524", year: 2025,
+          doi: "10.1128/spectrum.02355-24",
+          url: "https://pubmed.ncbi.nlm.nih.gov/39576133/"
+        },
+        {
+          authors: "Ji C-H, Je H-W, Kim H, Kang H-S",
+          title: "Promoter engineering of natural product biosynthetic gene clusters in actinomycetes: concepts and applications",
+          journal: "Natural Product Reports", volume: "41", issue: "", pages: "672-699", year: 2024,
+          doi: "10.1039/D3NP00049D",
+          url: "https://pubs.rsc.org/en/content/articlelanding/2024/np/d3np00049d"
+        },
+        {
+          authors: "Chung Y-H, Kim H, Ji C-H, Je H-W, Lee D, Shim SH, Joo H-S, Kang H-S",
+          title: "Comparative genomics reveals a remarkable biosynthetic potential of the Streptomyces phylogenetic lineage associated with rugose-ornamented spores",
+          journal: "mSystems", volume: "6", issue: "4", pages: "e00489-21", year: 2021,
+          doi: "10.1128/mSystems.00489-21",
+          url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8407293/"
+        }
+      ];
 
+      publications.sort(function (a, b) { return b.year - a.year; });
+
+      var perPage = 5;
+      var currentPage = 1;
+      var totalPages = Math.ceil(publications.length / perPage);
+
+      function renderPage(page) {
+        var publist = document.getElementById("publist");
+        var start = (page - 1) * perPage;
+        var end = start + perPage;
+        var slice = publications.slice(start, end);
+
+        var html = '<div class="pub-items">';
+        slice.forEach(function (pub) {
+          var titleHtml = pub.url
+            ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">' + pub.title + '</a>'
+            : pub.title;
+          var doiLink = pub.doi
+            ? '<a href="https://doi.org/' + pub.doi + '" target="_blank" rel="noopener noreferrer">DOI</a>'
+            : "";
+          var articleLink = pub.url
+            ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">Article</a>'
+            : "";
+          var links = [doiLink, articleLink].filter(Boolean).join(" | ");
+          html += '<div class="pub-item">';
+          html += '<p class="pub-authors">' + pub.authors + '</p>';
+          html += '<h3 class="pub-title">' + titleHtml + '</h3>';
+          html += '<p class="pub-journal"><em>' + pub.journal + '</em>';
+          if (pub.volume) html += ', ' + pub.volume;
+          if (pub.issue) html += '(' + pub.issue + ')';
+          if (pub.pages) html += ', ' + pub.pages;
+          html += ' (' + pub.year + ')</p>';
+          if (links) html += '<p class="pub-links">' + links + '</p>';
+          html += '</div>';
+        });
+        html += '</div>';
+        publist.innerHTML = html;
+        renderPagination(page);
+      }
+
+      function renderPagination(page) {
+        if (totalPages <= 1) return;
+        var pagination = document.getElementById("pagination");
+        var html = '';
+        html += '<button onclick="goPage(' + (page - 1) + ')"' + (page === 1 ? ' disabled' : '') + '>&#8592; Prev</button>';
+        for (var i = 1; i <= totalPages; i++) {
+          html += '<button onclick="goPage(' + i + ')" class="' + (i === page ? 'active' : '') + '">' + i + '</button>';
+        }
+        html += '<button onclick="goPage(' + (page + 1) + ')"' + (page === totalPages ? ' disabled' : '') + '>Next &#8594;</button>';
+        pagination.innerHTML = html;
+      }
+
+      window.goPage = function (page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        renderPage(currentPage);
+        document.getElementById("publist").scrollIntoView({ behavior: "smooth" });
+      };
+
+      renderPage(currentPage);
+
+      // nav & scroll
+      var navToggle = document.querySelector(".nav-toggle");
+      var navList = document.querySelector(".nav-list");
       if (navToggle && navList) {
-        navToggle.addEventListener("click", () => {
-          const isOpen = navList.classList.toggle("open");
+        navToggle.addEventListener("click", function () {
+          var isOpen = navList.classList.toggle("open");
           navToggle.setAttribute("aria-expanded", String(isOpen));
         });
       }
-
-      const scrollTopBtn = document.querySelector(".scroll-top");
-
-      window.addEventListener("scroll", () => {
+      var scrollTopBtn = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", function () {
         if (!scrollTopBtn) return;
-        if (window.scrollY > 300) {
-          scrollTopBtn.classList.add("visible");
-        } else {
-          scrollTopBtn.classList.remove("visible");
-        }
+        scrollTopBtn.classList.toggle("visible", window.scrollY > 300);
       });
-
       if (scrollTopBtn) {
-        scrollTopBtn.addEventListener("click", () => {
+        scrollTopBtn.addEventListener("click", function () {
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
-
-      const yearSpan = document.getElementById("year");
-      if (yearSpan) {
-        yearSpan.textContent = String(new Date().getFullYear());
-      }
+      var yearSpan = document.getElementById("year");
+      if (yearSpan) yearSpan.textContent = String(new Date().getFullYear());
+    })();
     </script>
   </body>
 </html>
