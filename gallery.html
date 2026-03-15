@@ -1,24 +1,46 @@
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/20251009-1.jpg','2025')">
-  <img src="images/gallery/2025/20251009-1.jpg" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/IMG_2789.JPEG','2025')">
-  <img src="images/gallery/2025/IMG_2789.JPEG" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20190811_214235669_14.jpg','2025')">
-  <img src="images/gallery/2025/KakaoTalk_20190811_214235669_14.jpg" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251013_192201490_04.jpg','2025')">
-  <img src="images/gallery/2025/KakaoTalk_20251013_192201490_04.jpg" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251125_111745995_04.jpg','2025')">
-  <img src="images/gallery/2025/KakaoTalk_20251125_111745995_04.jpg" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
-<div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251125_112234045.jpg','2025')">
-  <img src="images/gallery/2025/KakaoTalk_20251125_112234045.jpg" alt="2025" loading="lazy">
-  <div class="caption">2025</div>
-</div>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Gallery | Marine Metagenome Mining Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .gallery-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .gallery-tab {
+        padding: 8px 24px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 999px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.15s;
+        color: #374151;
+      }
+      .gallery-tab:hover {
+        border-color: #2563eb;
+        color: #2563eb;
+      }
+      .gallery-tab.active {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+      }
+      .gallery-panel { display: none; }
+      .gallery-panel.active { display: block; }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+      }
+      .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border-ra
