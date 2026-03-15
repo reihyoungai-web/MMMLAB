@@ -1,43 +1,35 @@
-async function loadPublications() {
-  const publist = document.getElementById("publist");
-  try {
-    const response = await fetch("data/publications.json");
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-    const publications = await response.json();
-    if (!Array.isArray(publications) || publications.length === 0) {
-      publist.innerHTML = "<p>No publications available.</p>";
-      return;
-    }
-
-    const sorted = publications.sort((a, b) => Number(b.year) - Number(a.year));
-
-    let html = '<div class="pub-items">';
-    sorted.forEach((pub) => {
-      const titleHtml = pub.url
-        ? `<a href="${pub.url}" target="_blank" rel="noopener noreferrer">${pub.title}</a>`
-        : pub.title;
-      const doiLink = pub.doi
-        ? `<a href="https://doi.org/${pub.doi}" target="_blank" rel="noopener noreferrer">DOI</a>`
-        : "";
-      const articleLink = pub.url
-        ? `<a href="${pub.url}" target="_blank" rel="noopener noreferrer">Article</a>`
-        : "";
-      const links = [doiLink, articleLink].filter(Boolean).join(" | ");
-      html += `
-        <div class="pub-item">
-          <p class="pub-authors">${pub.authors}</p>
-          <h3 class="pub-title">${titleHtml}</h3>
-          <p class="pub-journal">
-            <em>${pub.journal}</em>${pub.volume ? `, ${pub.volume}` : ""}${pub.issue ? `(${pub.issue})` : ""}${pub.pages ? `, ${pub.pages}` : ""} (${pub.year})
-          </p>
-          ${links ? `<p class="pub-links">${links}</p>` : ""}
-        </div>`;
-    });
-    html += "</div>";
-    publist.innerHTML = html;
-  } catch (error) {
-    publist.innerHTML = `<p>Failed to load publications. Error: ${error.message}</p>`;
-    console.error(error);
+[
+  {
+    "authors": "Shin M-S, Yang I, Wang W, Kim H",
+    "title": "Diversity and composition of sponge-associated microbiomes from Korean sponges revealed by full-length 16S rRNA analysis",
+    "journal": "Scientific Reports",
+    "volume": "15",
+    "issue": "",
+    "pages": "",
+    "year": 2025,
+    "doi": "10.1038/s41598-025-16155-6",
+    "url": "https://www.nature.com/articles/s41598-025-16155-6"
+  },
+  {
+    "authors": "Ji C-H, Je H-W, Kim H, Kang H-S",
+    "title": "Promoter engineering of natural product biosynthetic gene clusters in actinomycetes: concepts and applications",
+    "journal": "Natural Product Reports",
+    "volume": "41",
+    "issue": "",
+    "pages": "672",
+    "year": 2024,
+    "doi": "10.1039/D3NP00049D",
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2024/np/d3np00049d"
+  },
+  {
+    "authors": "Chung Y-H, Kim H, Ji C-H, Je H-W, Lee D, Shim SH, Joo H-S, Kang H-S",
+    "title": "Comparative genomics reveals a remarkable biosynthetic potential of the Streptomyces phylogenetic lineage associated with rugose-ornamented spores",
+    "journal": "mSystems",
+    "volume": "6",
+    "issue": "4",
+    "pages": "e00489-21",
+    "year": 2021,
+    "doi": "10.1128/mSystems.00489-21",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8407293/"
   }
-}
-loadPublications();
+]
