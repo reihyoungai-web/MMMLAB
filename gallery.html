@@ -43,4 +43,224 @@
         position: relative;
         aspect-ratio: 1;
         overflow: hidden;
-        border-ra
+        border-radius: 8px;
+        cursor: pointer;
+        background: #f3f4f6;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.2s;
+        display: block;
+      }
+      .gallery-item:hover img { transform: scale(1.05); }
+      .gallery-item .caption {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        font-size: 0.78rem;
+        padding: 6px 8px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .gallery-item:hover .caption { opacity: 1; }
+      .gallery-empty {
+        color: #9ca3af;
+        font-size: 0.95rem;
+        padding: 24px 0;
+      }
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.open { display: flex; }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: 8px;
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 20px; right: 28px;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+        background: none;
+        border: none;
+      }
+      .lightbox-caption {
+        position: absolute;
+        bottom: 20px;
+        color: #e5e7eb;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        padding: 0 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">M<sup>3</sup>L</div>
+          <div class="logo-text">
+            <span class="logo-korean">마린 메타지놈 마이닝 연구실</span>
+            <span class="logo-english">Marine Metagenome Mining Lab</span>
+          </div>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="gallery.html" aria-current="page">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-highlight"><a href="member-only.html">Member only</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section-alt" aria-labelledby="gallery-title">
+        <div class="section-header">
+          <h2 id="gallery-title">Gallery</h2>
+          <p class="section-subtitle">
+            Moments from conferences, fieldwork, and lab life in the Marine Metagenome Mining Lab.
+          </p>
+        </div>
+
+        <div class="gallery-tabs">
+          <button class="gallery-tab active" onclick="showTab('2025', this)">2025</button>
+          <button class="gallery-tab" onclick="showTab('2024', this)">2024</button>
+          <button class="gallery-tab" onclick="showTab('earlier', this)">2023 &amp; earlier</button>
+        </div>
+
+        <!-- 2025 -->
+        <div class="gallery-panel active" id="tab-2025">
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/20251009-1.jpg', '2025')">
+              <img src="images/gallery/2025/20251009-1.jpg" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/IMG_2789.JPEG', '2025')">
+              <img src="images/gallery/2025/IMG_2789.JPEG" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20190811_214235669_14.jpg', '2025')">
+              <img src="images/gallery/2025/KakaoTalk_20190811_214235669_14.jpg" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251013_192201490_04.jpg', '2025')">
+              <img src="images/gallery/2025/KakaoTalk_20251013_192201490_04.jpg" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251125_111745995_04.jpg', '2025')">
+              <img src="images/gallery/2025/KakaoTalk_20251125_111745995_04.jpg" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('images/gallery/2025/KakaoTalk_20251125_112234045.jpg', '2025')">
+              <img src="images/gallery/2025/KakaoTalk_20251125_112234045.jpg" alt="2025" loading="lazy">
+              <div class="caption">2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="gallery-panel" id="tab-2024">
+          <div class="gallery-grid">
+            <p class="gallery-empty">Photos coming soon.</p>
+          </div>
+        </div>
+
+        <!-- 2023 & earlier -->
+        <div class="gallery-panel" id="tab-earlier">
+          <div class="gallery-grid">
+            <p class="gallery-empty">Photos coming soon.</p>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- 라이트박스 -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> Marine Metagenome Mining Lab (M<sup>3</sup>L), Hiyoung Kim.</p>
+        <p>Department of Biomedical Science &amp; Engineering, Konkuk University</p>
+      </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+    <script>
+      function showTab(year, btn) {
+        document.querySelectorAll('.gallery-panel').forEach(function(p) {
+          p.classList.remove('active');
+        });
+        document.querySelectorAll('.gallery-tab').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        document.getElementById('tab-' + year).classList.add('active');
+        btn.classList.add('active');
+      }
+
+      function openLightbox(src, caption) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-caption').textContent = caption || '';
+        document.getElementById('lightbox').classList.add('open');
+        event.stopPropagation();
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.getElementById('lightbox-img').src = '';
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      var navToggle = document.querySelector('.nav-toggle');
+      var navList = document.querySelector('.nav-list');
+      if (navToggle && navList) {
+        navToggle.addEventListener('click', function() {
+          var isOpen = navList.classList.toggle('open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      var scrollTopBtn = document.querySelector('.scroll-top');
+      window.addEventListener('scroll', function() {
+        if (!scrollTopBtn) return;
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+      });
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+      var yearSpan = document.getElementById('year');
+      if (yearSpan) yearSpan.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
