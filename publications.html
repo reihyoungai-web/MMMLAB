@@ -17,10 +17,10 @@
       .pub-title a:hover { text-decoration: underline; }
       .pub-journal { font-size: 0.9rem; color: #374151; margin: 0 0 4px; font-style: italic; }
       .pub-links { font-size: 0.85rem; margin: 4px 0 0; }
-      .pub-links a { color: #2aa89f; text-decoration: none; margin-right: 10px; }
+      .pub-links a { color: #2563eb; text-decoration: none; margin-right: 10px; }
       .pub-links a:hover { text-decoration: underline; }
       .pub-scholar-link { margin-top: 16px; font-size: 0.9rem; color: #6b7280; }
-      .pub-scholar-link a { color: #2aa89f; }
+      .pub-scholar-link a { color: #2563eb; }
       .pub-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
       .pub-filter button { padding: 5px 14px; border: 1px solid #d1d5db; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; }
       .pub-filter button:hover { background: #f3f4f6; }
@@ -109,7 +109,7 @@
         },
         {
           num: 2,
-          authors: "Lee EY, Varli M, Kim H, Kim S, Kang S, Chin J, An H, Nam SJ",
+          authors: "Lee EY, Varli M, Kim H, Kim S, Kang S, Chin J, An H, Kim H, Nam SJ",
           title: "Monaprenylindole A, a prenylated indole derivative from marine-derived <em>Streptomyces</em> sp., accelerates wound healing through the enhancement of keratinocyte motility via the modulation of cytoskeletal remodeling and growth factor pathways",
           journal: "Bioorg Med Chem Lett", volume: "134", issue: "", pages: "130539", year: 2026,
           doi: "10.1016/j.bmcl.2026.130539"
@@ -442,7 +442,6 @@
           html += '<p class="pub-authors"><span class="pub-number">' + pub.num + '</span>' + pub.authors + '</p>';
           html += '<h3 class="pub-title"><a href="' + doiUrl + '" target="_blank" rel="noopener noreferrer">' + pub.title + '</a></h3>';
           html += '<p class="pub-journal">' + journalStr + '</p>';
-          html += '<p class="pub-links"><a href="' + doiUrl + '" target="_blank" rel="noopener noreferrer">DOI</a></p>';
           html += '</div>';
         });
         html += '</div>';
