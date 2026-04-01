@@ -10,21 +10,22 @@
       .pub-items { display: flex; flex-direction: column; gap: 20px; }
       .pub-item { padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
       .pub-item:last-child { border-bottom: none; }
+      .pub-number { display: inline-block; font-size: 0.8rem; font-weight: 700; color: #fff; background: #2563eb; border-radius: 4px; padding: 1px 7px; margin-right: 6px; vertical-align: middle; }
       .pub-authors { font-size: 0.9rem; color: #6b7280; margin: 0 0 4px; }
       .pub-title { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
       .pub-title a { color: inherit; text-decoration: none; }
       .pub-title a:hover { text-decoration: underline; }
-      .pub-journal { font-size: 0.9rem; color: #374151; margin: 0 0 4px; }
+      .pub-journal { font-size: 0.9rem; color: #374151; margin: 0 0 4px; font-style: italic; }
       .pub-links { font-size: 0.85rem; margin: 4px 0 0; }
-      .pub-links a { color: #2563eb; text-decoration: none; }
+      .pub-links a { color: #2563eb; text-decoration: none; margin-right: 10px; }
       .pub-links a:hover { text-decoration: underline; }
-      .pub-pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
-      .pub-pagination button { padding: 6px 14px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; font-size: 0.9rem; }
-      .pub-pagination button:hover { background: #f3f4f6; }
-      .pub-pagination button.active { background: #2563eb; color: #fff; border-color: #2563eb; }
-      .pub-pagination button:disabled { opacity: 0.4; cursor: default; }
       .pub-scholar-link { margin-top: 16px; font-size: 0.9rem; color: #6b7280; }
       .pub-scholar-link a { color: #2563eb; }
+      .pub-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+      .pub-filter button { padding: 5px 14px; border: 1px solid #d1d5db; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; }
+      .pub-filter button:hover { background: #f3f4f6; }
+      .pub-filter button.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+      .pub-count { font-size: 0.85rem; color: #6b7280; margin-bottom: 12px; }
     </style>
   </head>
   <body>
@@ -58,7 +59,7 @@
       <section class="section section-alt" aria-labelledby="publications-title">
         <div class="section-header">
           <h2 id="publications-title">Publications</h2>
-          <p class="section-subtitle">Selected topics in marine natural products, microbiology, and metagenomics.</p>
+          <p class="section-subtitle">42 peer-reviewed publications in marine natural products, microbiology, and metagenomics.</p>
         </div>
 
         <div class="publications-layout">
@@ -69,16 +70,18 @@
               <li>Iodinated polyacetylenes and benzophenone derivatives</li>
               <li>Antibacterial and antifungal compounds from marine actinomycetes</li>
               <li>Metagenomic exploration of microbial secondary metabolite potential</li>
+              <li>Biosynthetic gene cluster engineering and heterologous expression</li>
             </ul>
           </div>
 
           <div class="card">
             <h3>Full publication list</h3>
+            <div class="pub-filter" id="yearFilter"></div>
+            <p class="pub-count" id="pubCount"></p>
             <div id="publist"></div>
-            <div class="pub-pagination" id="pagination"></div>
             <p class="pub-scholar-link">
-              For the complete list of publications, visit
-              <a href="https://scholar.google.com/scholar?hl=ko&as_sdt=0,5&q=%22hiyoung+kim%22&scisbd=1" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
+              For the complete list, visit
+              <a href="https://scholar.google.com/citations?user=BimZFYAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
             </p>
           </div>
         </div>
@@ -98,95 +101,364 @@
     (function () {
       var publications = [
         {
-          authors: "Shin M-S, Yang I, Wang W, Kim H",
+          num: 1,
+          authors: "Park J, Tran SH, Park K, Paik JH, Lee W, Youn JS, Hwang GJ, Oh T, Ko SK, Kim H, Hong YS, Kang K, Jang JP, Jang JH",
+          title: "Dokdothiocin, an Anti-Neuroinflammatory Thiopeptide from <em>Streptomyces</em> sp. 20A130",
+          journal: "Org Lett", volume: "28", issue: "10", pages: "3117–3123", year: 2026,
+          doi: "10.1021/acs.orglett.5c05406"
+        },
+        {
+          num: 2,
+          authors: "Lee EY, Varli M, Kim H, Kim S, Kang S, Chin J, An H, Kim H, Nam SJ",
+          title: "Monaprenylindole A, a prenylated indole derivative from marine-derived <em>Streptomyces</em> sp., accelerates wound healing through the enhancement of keratinocyte motility via the modulation of cytoskeletal remodeling and growth factor pathways",
+          journal: "Bioorg Med Chem Lett", volume: "134", issue: "", pages: "130539", year: 2026,
+          doi: "10.1016/j.bmcl.2026.130539"
+        },
+        {
+          num: 3,
+          authors: "Lee EY, Gao Q, Tan H, Hillman PF, Chung DW, Choi G, Kim H, Lim KM, Nam SJ",
+          title: "Isolation of Three New Diketopiperazine Alkaloids from <em>Penicillium</em> sp. SCH3-Sd2",
+          journal: "Molecules", volume: "31", issue: "1", pages: "", year: 2026,
+          doi: "10.3390/molecules31010149"
+        },
+        {
+          num: 4,
+          authors: "Kim M, Shin MS, Kim SJ, Park S, Yang I, Kim YA, Kim H",
+          title: "Microbial Community Characterization of Nine Korean Sponge Species from Gageodo Island",
+          journal: "Diversity-Basel", volume: "18", issue: "1", pages: "", year: 2026,
+          doi: "10.3390/d18010042"
+        },
+        {
+          num: 5,
+          authors: "Shin MS, Yang I, Wang W, Kim H",
           title: "Diversity and composition of sponge-associated microbiomes from Korean sponges revealed by full-length 16S rRNA analysis",
-          journal: "Scientific Reports", volume: "15", issue: "", pages: "", year: 2025,
-          doi: "10.1038/s41598-025-16155-6",
-          url: "https://www.nature.com/articles/s41598-025-16155-6"
+          journal: "Sci Rep", volume: "15", issue: "1", pages: "", year: 2025,
+          doi: "10.1038/s41598-025-16155-6"
         },
         {
-          authors: "Kim H, Ahn J, Kim J, Kang H-S",
-          title: "Metagenomic insights and biosynthetic potential of Candidatus Entotheonella symbiont associated with Halichondria marine sponges",
-          journal: "Microbiology Spectrum", volume: "13", issue: "1", pages: "e0235524", year: 2025,
-          doi: "10.1128/spectrum.02355-24",
-          url: "https://pubmed.ncbi.nlm.nih.gov/39576133/"
+          num: 6,
+          authors: "Kim SJ, Kang SI, Lee N, Oh JM, Kim H, Lee MG, Song JH, Shin MS",
+          title: "Immunoenhancing Effects of Jeju <em>Agastache rugosa</em> Extracts on NK Cell Activity and Lymphocyte Proliferation in Cyclophosphamide-Induced Immunosuppression",
+          journal: "Pharmaceuticals-Basel", volume: "18", issue: "8", pages: "", year: 2025,
+          doi: "10.3390/ph18081129"
         },
         {
-          authors: "Ji C-H, Je H-W, Kim H, Kang H-S",
+          num: 7,
+          authors: "Kim H, Park K, Kim YB, Kim M",
+          title: "Integrative Assessment of <em>Glycyrrhiza uralensis</em> Extract in Cosmetics Using HPLC Analysis, Network Pharmacology, and Computational Threshold of Toxicological Concern-Based Safety Evaluation",
+          journal: "Int J Mol Sci", volume: "26", issue: "23", pages: "", year: 2025,
+          doi: "10.3390/ijms262311677"
+        },
+        {
+          num: 8,
+          authors: "Kim H, Lee MG, Shin MS",
+          title: "Anti-Obesity Effects of Acid-Processed <em>Citrus reticulata</em> Blanco Peel Extract Enriched in Highly Bioactive Polymethoxyflavones: Inhibition of 3T3-L1 Adipocyte Differentiation and Therapeutic Efficacy in <em>ob/ob</em> Mice",
+          journal: "Nutrients", volume: "17", issue: "21", pages: "", year: 2025,
+          doi: "10.3390/nu17213322"
+        },
+        {
+          num: 9,
+          authors: "Kim H, Ahn J, Kim J, Kang HS",
+          title: "Metagenomic insights and biosynthetic potential of <em>Candidatus</em> Entotheonella symbiont associated with <em>Halichondria</em> marine sponges",
+          journal: "Microbiol Spectr", volume: "13", issue: "1", pages: "e0235524", year: 2025,
+          doi: "10.1128/spectrum.02355-24"
+        },
+        {
+          num: 10,
+          authors: "Wang WH, Lee JN, Roh E, Shetye G, Cao J, McAlpine J, Pauli G, Franzblau S, Vu THN, Quach NT, Oh E, Park KH, Park C, Cho YB, Jang H, Han S, Kim H, Cho S, Phi QT, Kang H",
+          title: "Cavomycins A–C, Linear Oligomer Depsipeptides from an Annelid-Associated <em>Streptomyces cavourensis</em>",
+          journal: "J Nat Prod", volume: "87", issue: "4", pages: "976–983", year: 2024,
+          doi: "10.1021/acs.jnatprod.3c01275"
+        },
+        {
+          num: 11,
+          authors: "Min SJ, Kim H, Yambe N, Shin MS",
+          title: "Ameliorative Effects of Korean-Red-Ginseng-Derived Polysaccharide on Antibiotic-Associated Diarrhea",
+          journal: "Polymers-Basel", volume: "16", issue: "2", pages: "", year: 2024,
+          doi: "10.3390/polym16020231"
+        },
+        {
+          num: 12,
+          authors: "Ji CH, Je HW, Kim H, Kang HS",
           title: "Promoter engineering of natural product biosynthetic gene clusters in actinomycetes: concepts and applications",
-          journal: "Natural Product Reports", volume: "41", issue: "", pages: "672-699", year: 2024,
-          doi: "10.1039/D3NP00049D",
-          url: "https://pubs.rsc.org/en/content/articlelanding/2024/np/d3np00049d"
+          journal: "Nat Prod Rep", volume: "41", issue: "4", pages: "672–699", year: 2024,
+          doi: "10.1039/d3np00049d"
         },
         {
-          authors: "Chung Y-H, Kim H, Ji C-H, Je H-W, Lee D, Shim SH, Joo H-S, Kang H-S",
-          title: "Comparative genomics reveals a remarkable biosynthetic potential of the Streptomyces phylogenetic lineage associated with rugose-ornamented spores",
+          num: 13,
+          authors: "Kim H, Kim JY, Ji CH, Lee D, Shim SH, Joo HS, Kang HS",
+          title: "Acidonemycins A–C, Glycosylated Angucyclines with Antivirulence Activity Produced by the Acidic Culture of <em>Streptomyces indonesiensis</em>",
+          journal: "J Nat Prod", volume: "", issue: "", pages: "", year: 2023,
+          doi: "10.1021/acs.jnatprod.3c00502"
+        },
+        {
+          num: 14,
+          authors: "Lee M, Lee J, Kim JM, Hong DH, Chin J, Kim H, Lee JG, Nam SJ, Yang I, Hahn D",
+          title: "Antibacterial Activity of Prenylated Flavonoids Isolated from Hop against Fish Pathogens <em>Streptococcus iniae</em> and <em>Vibrio vulnificus</em>",
+          journal: "Biotechnol Bioproc E", volume: "27", issue: "3", pages: "361–369", year: 2022,
+          doi: "10.1007/s12257-021-0247-2"
+        },
+        {
+          num: 15,
+          authors: "Kim S, Le TC, Han SA, Hillman PF, Hong A, Hwang S, Du YE, Kim H, Oh DC, Cha SS, Lee J, Nam SJ, Fenical W",
+          title: "Saccharobisindole, Neoasterric Methyl Ester, and 7-Chloro-4(1H)-quinolone: Three New Compounds Isolated from the Marine Bacterium <em>Saccharomonospora</em> sp.",
+          journal: "Mar Drugs", volume: "20", issue: "1", pages: "", year: 2022,
+          doi: "10.3390/md20010035"
+        },
+        {
+          num: 16,
+          authors: "Kim H, Cao TQ, Yeo CE, Shin SH, Kim H, Hong DH, Hahn D",
+          title: "Development and Validation of Quantitative Analysis Method for Phenanthrenes in Peels of the <em>Dioscorea</em> Genus",
+          journal: "J Microbiol Biotechn", volume: "32", issue: "8", pages: "976–981", year: 2022,
+          doi: "10.4014/jmb.2206.06037"
+        },
+        {
+          num: 17,
+          authors: "Ji CH, Kim H, Je HW, Kwon H, Lee D, Kang HS",
+          title: "Top-down synthetic biology approach for titer improvement of clinically important antibiotic daptomycin in <em>Streptomyces roseosporus</em>",
+          journal: "Metab Eng", volume: "69", issue: "", pages: "40–49", year: 2022,
+          doi: "10.1016/j.ymben.2021.10.013"
+        },
+        {
+          num: 18,
+          authors: "Akinniyi G, Lee J, Kim H, Lee JG, Yang I",
+          title: "A Medicinal Halophyte <em>Ipomoea pes-caprae</em> (Linn.) R. Br.: A Review of Its Botany, Traditional Uses, Phytochemistry, and Bioactivity",
+          journal: "Mar Drugs", volume: "20", issue: "5", pages: "", year: 2022,
+          doi: "10.3390/md20050329"
+        },
+        {
+          num: 19,
+          authors: "Kim H, Lee TG, Yang I, Wang W, Chin J, Lee J, Rho BJ, Choi H, Nam SJ, Hahn D, Kang H",
+          title: "Antibacterial Bicyclic Fatty Acids from a Korean Colonial Tunicate <em>Didemnum</em> sp.",
+          journal: "Mar Drugs", volume: "19", issue: "9", pages: "", year: 2021,
+          doi: "10.3390/md19090521"
+        },
+        {
+          num: 20,
+          authors: "Chung YH, Kim H, Ji CH, Je HW, Lee D, Shim SH, Joo HS, Kang HS",
+          title: "Comparative Genomics Reveals a Remarkable Biosynthetic Potential of the <em>Streptomyces</em> Phylogenetic Lineage Associated with Rugose-Ornamented Spores",
           journal: "mSystems", volume: "6", issue: "4", pages: "e00489-21", year: 2021,
-          doi: "10.1128/mSystems.00489-21",
-          url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8407293/"
+          doi: "10.1128/mSystems.00489-21"
+        },
+        {
+          num: 21,
+          authors: "Kim H, Ji CH, Je HW, Kim JP, Kang HS",
+          title: "mpCRISTAR: Multiple Plasmid Approach for CRISPR/Cas9 and TAR-Mediated Multiplexed Refactoring of Natural Product Biosynthetic Gene Clusters",
+          journal: "ACS Synth Biol", volume: "9", issue: "1", pages: "175–180", year: 2020,
+          doi: "10.1021/acssynbio.9b00382"
+        },
+        {
+          num: 22,
+          authors: "Ji CH, Kim H, Kang HS",
+          title: "Synthetic Inducible Regulatory Systems Optimized for the Modulation of Secondary Metabolite Production in <em>Streptomyces</em>",
+          journal: "ACS Synth Biol", volume: "8", issue: "3", pages: "577–586", year: 2019,
+          doi: "10.1021/acssynbio.9b00001"
+        },
+        {
+          num: 23,
+          authors: "Nepomuceno VM, Kim H, Ding YQ, Liu HB, Sadek M, Ferreira D, Omarsdottir S, Murphy BT",
+          title: "Deconvolution of E/Z tetrahydroisoquinoline amide rotamers and conformers from a marine-derived <em>Streptomyces</em> strain",
+          journal: "Tetrahedron", volume: "74", issue: "52", pages: "7421–7425", year: 2018,
+          doi: "10.1016/j.tet.2018.11.001"
+        },
+        {
+          num: 24,
+          authors: "Wang W, Kim H, Patil RS, Giri AG, Won DH, Hahn D, Sung Y, Lee J, Choi H, Nam SJ, Kang H",
+          title: "Cadiolides J–M, antibacterial polyphenyl butenolides from the Korean tunicate <em>Pseudodistoma antinboja</em>",
+          journal: "Bioorg Med Chem Lett", volume: "27", issue: "3", pages: "574–577", year: 2017,
+          doi: "10.1016/j.bmcl.2016.12.016"
+        },
+        {
+          num: 25,
+          authors: "Yeon JT, Kim H, Kim KJ, Lee J, Won DH, Nam SJ, Kim SH, Kang H, Son YJ",
+          title: "Acredinone C and the Effect of Acredinones on Osteoclastogenic and Osteoblastogenic Activity",
+          journal: "J Nat Prod", volume: "79", issue: "7", pages: "1730–1736", year: 2016,
+          doi: "10.1021/acs.jnatprod.6b00004"
+        },
+        {
+          num: 26,
+          authors: "Hahn D, Kim H, Yang I, Chin J, Hwang H, Won DH, Lee B, Nam SJ, Ekins M, Choi H, Kang H",
+          title: "The Halicylindramides, Farnesoid X Receptor Antagonizing Depsipeptides from a <em>Petrosia</em> sp. Marine Sponge Collected in Korea",
+          journal: "J Nat Prod", volume: "79", issue: "3", pages: "499–506", year: 2016,
+          doi: "10.1021/acs.jnatprod.5b00871"
+        },
+        {
+          num: 27,
+          authors: "Wang W, Lee TG, Patil RS, Mun B, Yang I, Kim H, Hahn D, Won DH, Lee J, Lee Y, Choi H, Nam SJ, Kang H",
+          title: "Monanchosterols A and B, Bioactive Bicyclo[4.3.1]steroids from a Korean Sponge <em>Monanchora</em> sp.",
+          journal: "J Nat Prod", volume: "78", issue: "3", pages: "368–373", year: 2015,
+          doi: "10.1021/np500760v"
+        },
+        {
+          num: 28,
+          authors: "Mun B, Wang W, Kim H, Hahn D, Yang I, Won DH, Kim EH, Lee J, Han C, Kim H, Ekins M, Nam SJ, Choi H, Kang H",
+          title: "Cytotoxic 5α,8α-epidioxy sterols from the marine sponge <em>Monanchora</em> sp.",
+          journal: "Arch Pharm Res", volume: "38", issue: "1", pages: "18–25", year: 2015,
+          doi: "10.1007/s12272-014-0480-8"
+        },
+        {
+          num: 29,
+          authors: "Kim H, Yang I, Ryu SY, Won DH, Giri AG, Wang W, Choi H, Chin J, Hahn D, Kim E, Han C, Lee J, Nam SJ, Ho WK, Kang H",
+          title: "Acredinones A and B, Voltage-Dependent Potassium Channel Inhibitors from the Sponge-Derived Fungus sp. F9A015",
+          journal: "J Nat Prod", volume: "78", issue: "3", pages: "363–367", year: 2015,
+          doi: "10.1021/np5007586"
+        },
+        {
+          num: 30,
+          authors: "Lee Y, Wang W, Kim H, Giri AG, Won DH, Hahn D, Baek KR, Lee J, Yang I, Choi H, Nam SJ, Kang H",
+          title: "Phorbaketals L–N, cytotoxic sesterterpenoids isolated from the marine sponge of the genus",
+          journal: "Bioorg Med Chem Lett", volume: "24", issue: "17", pages: "4095–4098", year: 2014,
+          doi: "10.1016/j.bmcl.2014.07.066"
+        },
+        {
+          num: 31,
+          authors: "Lee J, Kim H, Lee TG, Yang I, Won DH, Choi H, Nam SJ, Kang H",
+          title: "Anmindenols A and B, Inducible Nitric Oxide Synthase Inhibitors from a Marine-Derived <em>Streptomyces</em> sp.",
+          journal: "J Nat Prod", volume: "77", issue: "6", pages: "1528–1531", year: 2014,
+          doi: "10.1021/np500285a"
+        },
+        {
+          num: 32,
+          authors: "Kim H, Yang I, Patil RS, Kang S, Lee J, Choi H, Kim MS, Nam SJ, Kang H",
+          title: "Anithiactins A–C, Modified 2-Phenylthiazoles from a Mudflat-Derived <em>Streptomyces</em> sp.",
+          journal: "J Nat Prod", volume: "77", issue: "12", pages: "2716–2719", year: 2014,
+          doi: "10.1021/np500558b"
+        },
+        {
+          num: 33,
+          authors: "Kim H, Kim KJ, Yeon JT, Kim SH, Won DH, Choi H, Nam SJ, Son YJ, Kang H",
+          title: "Placotylene A, an Inhibitor of the Receptor Activator of Nuclear Factor-κB Ligand-Induced Osteoclast Differentiation, from a Korean Sponge <em>Placospongia</em> sp.",
+          journal: "Mar Drugs", volume: "12", issue: "4", pages: "2054–2065", year: 2014,
+          doi: "10.3390/md12042054"
+        },
+        {
+          num: 34,
+          authors: "Hahn D, Chin J, Kim H, Yang I, Won DH, Ekins M, Choi H, Nam SJ, Kang H",
+          title: "Sesquiterpenoids with PPARδ agonistic effect from a Korean marine sponge sp.",
+          journal: "Tetrahedron Lett", volume: "55", issue: "34", pages: "4716–4719", year: 2014,
+          doi: "10.1016/j.tetlet.2014.07.019"
+        },
+        {
+          num: 35,
+          authors: "Wang W, Mun B, Lee Y, Reddy MV, Park Y, Lee J, Kim H, Hahn D, Chin J, Ekins M, Nam SJ, Kang H",
+          title: "Bioactive Sesterterpenoids from a Korean Sponge <em>Monanchora</em> sp.",
+          journal: "J Nat Prod", volume: "76", issue: "2", pages: "170–177", year: 2013,
+          doi: "10.1021/np300573m"
+        },
+        {
+          num: 36,
+          authors: "Kim H, Chin J, Choi H, Baek K, Lee TG, Park SE, Wang W, Hahn D, Yang I, Lee J, Mun B, Ekins M, Nam SJ, Kang H",
+          title: "Phosphoiodyns A and B, Unique Phosphorus-Containing Iodinated Polyacetylenes from a Korean Sponge <em>Placospongia</em> sp.",
+          journal: "Org Lett", volume: "15", issue: "1", pages: "100–103", year: 2013,
+          doi: "10.1021/ol3031318"
+        },
+        {
+          num: 37,
+          authors: "Hahn D, Won DH, Mun B, Kim H, Han C, Wang W, Chun T, Park S, Yoon D, Choi H, Nam SJ, Ekins M, Chin J, Kang H",
+          title: "Cytotoxic scalarane sesterterpenes from a Korean marine sponge <em>Psammocinia</em> sp.",
+          journal: "Bioorg Med Chem Lett", volume: "23", issue: "8", pages: "2336–2339", year: 2013,
+          doi: "10.1016/j.bmcl.2013.02.061"
+        },
+        {
+          num: 38,
+          authors: "Wang W, Lee Y, Lee TG, Mun B, Giri AG, Lee J, Kim H, Hahn D, Yang I, Chin J, Choi H, Nam SJ, Kang H",
+          title: "Phorone A and Isophorbasone A, Sesterterpenoids Isolated from the Marine Sponge <em>Phorbas</em> sp.",
+          journal: "Org Lett", volume: "14", issue: "17", pages: "4486–4489", year: 2012,
+          doi: "10.1021/ol3019874"
+        },
+        {
+          num: 39,
+          authors: "Wang W, Kim H, Nam SJ, Rho BJ, Kang H",
+          title: "Antibacterial Butenolides from the Korean Tunicate <em>Pseudodistoma antinboja</em>",
+          journal: "J Nat Prod", volume: "75", issue: "12", pages: "2049–2054", year: 2012,
+          doi: "10.1021/np300544a"
+        },
+        {
+          num: 40,
+          authors: "Shin K, Chin J, Hahn D, Lee J, Hwang H, Won DH, Ham J, Choi H, Kang E, Kim H, Ju MK, Nam SJ, Kang H",
+          title: "Sterols from a soft coral, <em>Dendronephthya gigantea</em> as farnesoid X-activated receptor antagonists",
+          journal: "Steroids", volume: "77", issue: "5", pages: "355–359", year: 2012,
+          doi: "10.1016/j.steroids.2011.12.027"
+        },
+        {
+          num: 41,
+          authors: "Jang KP, Kim CH, Na SW, Jang DS, Kim H, Kang H, Lee E",
+          title: "7-Phenylplatensimycin and 11-methyl-7-phenylplatensimycin: More potent analogs of platensimycin",
+          journal: "Bioorg Med Chem Lett", volume: "20", issue: "7", pages: "2156–2158", year: 2010,
+          doi: "10.1016/j.bmcl.2010.02.037"
+        },
+        {
+          num: 42,
+          authors: "Jang KP, Kim CH, Na SW, Kim H, Kang H, Lee E",
+          title: "Isoplatensimycin: Synthesis and biological evaluation",
+          journal: "Bioorg Med Chem Lett", volume: "19", issue: "16", pages: "4601–4602", year: 2009,
+          doi: "10.1016/j.bmcl.2009.06.092"
         }
       ];
 
-      publications.sort(function (a, b) { return b.year - a.year; });
+      // Build year options
+      var years = Array.from(new Set(publications.map(function(p){ return p.year; }))).sort(function(a,b){ return b-a; });
+      var activeYear = "all";
 
-      var perPage = 5;
-      var currentPage = 1;
-      var totalPages = Math.ceil(publications.length / perPage);
+      var filterEl = document.getElementById("yearFilter");
+      var allBtn = document.createElement("button");
+      allBtn.textContent = "All (" + publications.length + ")";
+      allBtn.className = "active";
+      allBtn.onclick = function() { setYear("all"); };
+      filterEl.appendChild(allBtn);
 
-      function renderPage(page) {
-        var publist = document.getElementById("publist");
-        var start = (page - 1) * perPage;
-        var end = start + perPage;
-        var slice = publications.slice(start, end);
+      years.forEach(function(y) {
+        var count = publications.filter(function(p){ return p.year === y; }).length;
+        var btn = document.createElement("button");
+        btn.textContent = y + " (" + count + ")";
+        btn.onclick = function() { setYear(y); };
+        filterEl.appendChild(btn);
+      });
+
+      function setYear(y) {
+        activeYear = y;
+        // update button states
+        var btns = filterEl.querySelectorAll("button");
+        btns.forEach(function(b) { b.classList.remove("active"); });
+        if (y === "all") btns[0].classList.add("active");
+        else {
+          btns.forEach(function(b) {
+            if (b.textContent.startsWith(String(y))) b.classList.add("active");
+          });
+        }
+        render();
+      }
+
+      function render() {
+        var filtered = activeYear === "all"
+          ? publications
+          : publications.filter(function(p){ return p.year === activeYear; });
+
+        var countEl = document.getElementById("pubCount");
+        countEl.textContent = "Showing " + filtered.length + " of " + publications.length + " publications";
 
         var html = '<div class="pub-items">';
-        slice.forEach(function (pub) {
-          var titleHtml = pub.url
-            ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">' + pub.title + '</a>'
-            : pub.title;
-          var doiLink = pub.doi
-            ? '<a href="https://doi.org/' + pub.doi + '" target="_blank" rel="noopener noreferrer">DOI</a>'
-            : "";
-          var articleLink = pub.url
-            ? '<a href="' + pub.url + '" target="_blank" rel="noopener noreferrer">Article</a>'
-            : "";
-          var links = [doiLink, articleLink].filter(Boolean).join(" | ");
+        filtered.forEach(function(pub) {
+          var journalStr = pub.journal;
+          if (pub.volume) journalStr += " " + pub.volume;
+          if (pub.issue) journalStr += "(" + pub.issue + ")";
+          if (pub.pages) journalStr += ", " + pub.pages;
+          journalStr += " (" + pub.year + ")";
+
+          var doiUrl = "https://doi.org/" + pub.doi;
+
           html += '<div class="pub-item">';
-          html += '<p class="pub-authors">' + pub.authors + '</p>';
-          html += '<h3 class="pub-title">' + titleHtml + '</h3>';
-          html += '<p class="pub-journal"><em>' + pub.journal + '</em>';
-          if (pub.volume) html += ', ' + pub.volume;
-          if (pub.issue) html += '(' + pub.issue + ')';
-          if (pub.pages) html += ', ' + pub.pages;
-          html += ' (' + pub.year + ')</p>';
-          if (links) html += '<p class="pub-links">' + links + '</p>';
+          html += '<p class="pub-authors"><span class="pub-number">' + pub.num + '</span>' + pub.authors + '</p>';
+          html += '<h3 class="pub-title"><a href="' + doiUrl + '" target="_blank" rel="noopener noreferrer">' + pub.title + '</a></h3>';
+          html += '<p class="pub-journal">' + journalStr + '</p>';
+          html += '<p class="pub-links"><a href="' + doiUrl + '" target="_blank" rel="noopener noreferrer">DOI</a></p>';
           html += '</div>';
         });
         html += '</div>';
-        publist.innerHTML = html;
-        renderPagination(page);
+        document.getElementById("publist").innerHTML = html;
       }
 
-      function renderPagination(page) {
-        if (totalPages <= 1) return;
-        var pagination = document.getElementById("pagination");
-        var html = '';
-        html += '<button onclick="goPage(' + (page - 1) + ')"' + (page === 1 ? ' disabled' : '') + '>&#8592; Prev</button>';
-        for (var i = 1; i <= totalPages; i++) {
-          html += '<button onclick="goPage(' + i + ')" class="' + (i === page ? 'active' : '') + '">' + i + '</button>';
-        }
-        html += '<button onclick="goPage(' + (page + 1) + ')"' + (page === totalPages ? ' disabled' : '') + '>Next &#8594;</button>';
-        pagination.innerHTML = html;
-      }
-
-      window.goPage = function (page) {
-        if (page < 1 || page > totalPages) return;
-        currentPage = page;
-        renderPage(currentPage);
-        document.getElementById("publist").scrollIntoView({ behavior: "smooth" });
-      };
-
-      renderPage(currentPage);
+      render();
 
       // nav & scroll
       var navToggle = document.querySelector(".nav-toggle");
