@@ -10,7 +10,7 @@
       .pub-items { display: flex; flex-direction: column; gap: 20px; }
       .pub-item { padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
       .pub-item:last-child { border-bottom: none; }
-      .pub-number { display: inline-block; font-size: 0.8rem; font-weight: 700; color: #fff; background: #2563eb; border-radius: 4px; padding: 1px 7px; margin-right: 6px; vertical-align: middle; }
+      .pub-number { display: inline-block; font-size: 0.8rem; font-weight: 700; color: #fff; background: #2aa89f; border-radius: 4px; padding: 1px 7px; margin-right: 6px; vertical-align: middle; }
       .pub-authors { font-size: 0.9rem; color: #6b7280; margin: 0 0 4px; }
       .pub-title { font-size: 1rem; font-weight: 600; margin: 0 0 4px; }
       .pub-title a { color: inherit; text-decoration: none; }
@@ -109,7 +109,7 @@
         },
         {
           num: 2,
-          authors: "Lee EY, Varli M, Kim H, Kim S, Kang S, Chin J, An H, Nam SJ",
+          authors: "Lee EY, Varli M, Kim H, Kim S, Kang S, Chin J, An H, Kim H, Nam SJ",
           title: "Monaprenylindole A, a prenylated indole derivative from marine-derived <em>Streptomyces</em> sp., accelerates wound healing through the enhancement of keratinocyte motility via the modulation of cytoskeletal remodeling and growth factor pathways",
           journal: "Bioorg Med Chem Lett", volume: "134", issue: "", pages: "130539", year: 2026,
           doi: "10.1016/j.bmcl.2026.130539"
@@ -396,43 +396,34 @@
         }
       ];
 
-      // Build year options
-      var years = Array.from(new Set(publications.map(function(p){ return p.year; }))).sort(function(a,b){ return b-a; });
-      var activeYear = "all";
+      // Period group filter
+      var periods = [
+        { label: "All",        min: 0,    max: 9999 },
+        { label: "2026",       min: 2026, max: 2026 },
+        { label: "2021–2025",  min: 2021, max: 2025 },
+        { label: "2016–2020",  min: 2016, max: 2020 },
+        { label: "2009–2015",  min: 2009, max: 2015 }
+      ];
 
+      var activePeriod = periods[0];
       var filterEl = document.getElementById("yearFilter");
-      var allBtn = document.createElement("button");
-      allBtn.textContent = "All (" + publications.length + ")";
-      allBtn.className = "active";
-      allBtn.onclick = function() { setYear("all"); };
-      filterEl.appendChild(allBtn);
 
-      years.forEach(function(y) {
-        var count = publications.filter(function(p){ return p.year === y; }).length;
+      periods.forEach(function(period, idx) {
+        var count = publications.filter(function(p){ return p.year >= period.min && p.year <= period.max; }).length;
         var btn = document.createElement("button");
-        btn.textContent = y + " (" + count + ")";
-        btn.onclick = function() { setYear(y); };
+        btn.textContent = period.label + " (" + count + ")";
+        if (idx === 0) btn.className = "active";
+        btn.onclick = function() {
+          activePeriod = period;
+          filterEl.querySelectorAll("button").forEach(function(b){ b.classList.remove("active"); });
+          btn.classList.add("active");
+          render();
+        };
         filterEl.appendChild(btn);
       });
 
-      function setYear(y) {
-        activeYear = y;
-        // update button states
-        var btns = filterEl.querySelectorAll("button");
-        btns.forEach(function(b) { b.classList.remove("active"); });
-        if (y === "all") btns[0].classList.add("active");
-        else {
-          btns.forEach(function(b) {
-            if (b.textContent.startsWith(String(y))) b.classList.add("active");
-          });
-        }
-        render();
-      }
-
       function render() {
-        var filtered = activeYear === "all"
-          ? publications
-          : publications.filter(function(p){ return p.year === activeYear; });
+        var filtered = publications.filter(function(p){ return p.year >= activePeriod.min && p.year <= activePeriod.max; });
 
         var countEl = document.getElementById("pubCount");
         countEl.textContent = "Showing " + filtered.length + " of " + publications.length + " publications";
